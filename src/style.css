@@ -76,6 +76,24 @@ ul {
   font-size: 1rem;
 }
 
+.coming-soon-header {
+  cursor: default;
+  background-color: transparent;
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+  opacity: 0.8;
+}
+
+.coming-soon-hero {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background-color: var(--text-dark);
+  color: white;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
 .btn:hover {
   background-color: transparent;
   color: var(--primary-color);
@@ -183,56 +201,6 @@ nav {
   }
 }
 
-/* Trusted By Section */
-.trusted-by {
-  padding: 2rem 0;
-  background-color: white;
-  border-bottom: 1px solid #f3f4f6;
-  overflow: hidden;
-}
-
-.trusted-by .subtitle.sm {
-  font-size: 0.875rem;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  margin-bottom: 2rem;
-  font-weight: 600;
-  opacity: 0.6;
-}
-
-.marquee-container {
-  overflow: hidden;
-  position: relative;
-  width: 100%;
-  mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
-}
-
-.marquee-content {
-  display: flex;
-  gap: 4rem;
-  width: max-content;
-  animation: scroll 30s linear infinite;
-  padding: 1rem 0;
-  will-change: transform;
-}
-
-.gym-brand {
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: #9ca3af;
-  white-space: nowrap;
-  user-select: none;
-}
-
-@keyframes scroll {
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(-50%);
-  }
-}
 
 /* Hero Section */
 .hero {
@@ -536,7 +504,7 @@ nav {
 }
 
 .logo-img {
-  width: 50px;
+  width: 55px;
 }
 
 .icon-sm {
@@ -685,175 +653,61 @@ nav {
   }
 }
 
-/* Pricing Section */
-.pricing-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  max-width: 900px;
-  margin: 0 auto;
+/* Waitlist Form */
+.waitlist-form-container {
+  max-width: 400px;
 }
 
-.pricing-card {
-  background: white;
-  padding: 2.5rem;
-  border-radius: var(--radius-xl);
-  border: 1px solid #e5e7eb;
-  text-align: center;
-  position: relative;
-  transition: all 0.3s ease;
-}
-
-.pricing-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
-}
-
-.pricing-card.popular {
-  border: 2px solid var(--primary-color);
-  box-shadow: var(--shadow-md);
-  transform: scale(1.05);
-  /* Make it stand out */
-}
-
-.pricing-card.popular:hover {
-  transform: scale(1.05) translateY(-5px);
-  box-shadow: var(--shadow-lg);
-}
-
-.popular-tag {
-  position: absolute;
-  top: -12px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--primary-color);
-  color: white;
-  padding: 0.25rem 1rem;
-  border-radius: 999px;
-  font-size: 0.875rem;
-  font-weight: 600;
-}
-
-.plan-header h3 {
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.price {
-  font-size: 3rem;
-  font-weight: 800;
-  color: var(--primary-color);
-  margin: 1rem 0;
-}
-
-.price span {
-  font-size: 1rem;
+.waitlist-text {
+  font-size: 1.1rem;
   color: var(--text-light);
-  font-weight: 400;
-}
-
-.features-list {
-  text-align: left;
-  margin: 2rem 0;
-  list-style: none;
-}
-
-.features-list li {
   margin-bottom: 1rem;
+}
+
+.waitlist-form {
   display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  color: var(--text-dark);
+  gap: 0.5rem;
+  flex-direction: column;
 }
 
-.check-icon {
-  color: var(--primary-color);
-  flex-shrink: 0;
-}
-
-.full-width {
+.input-field {
+  padding: 0.875rem 1.5rem;
+  border-radius: 9999px;
+  border: 2px solid #e5e7eb;
+  font-family: inherit;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
   width: 100%;
-  display: block;
 }
 
-@media (max-width: 768px) {
-  .pricing-card.popular {
-    transform: none;
-    /* Reset distinct scale on mobile */
-  }
-
-  .pricing-card.popular:hover {
-    transform: translateY(-5px);
-  }
+.input-field:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 4px rgba(241, 123, 33, 0.1);
 }
 
-/* Testimonials Section */
-.testimonials {
-  background-color: var(--bg-off-white);
+.submit-btn {
+  border: 2px solid var(--primary-color);
+  width: 100%;
 }
 
-.testimonials-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-}
-
-.testimonial-card {
-  background: white;
-  padding: 2.5rem;
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
-  position: relative;
-  transition: all 0.3s ease;
-}
-
-.testimonial-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-md);
-}
-
-.quote-icon {
-  color: var(--primary-color);
-  opacity: 0.2;
-  margin-bottom: 1rem;
-}
-
-.quote-text {
-  font-size: 1.125rem;
-  line-height: 1.6;
-  color: var(--text-dark);
-  font-style: italic;
-  margin-bottom: 2rem;
-}
-
-.author {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.avatar {
-  width: 48px;
-  height: 48px;
-  background: var(--primary-color);
+.submit-btn:hover {
+  background-color: var(--primary-hover);
+  border-color: var(--primary-hover);
   color: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 1.125rem;
 }
 
-.info h4 {
-  font-size: 1rem;
-  margin-bottom: 0.125rem;
+@media (min-width: 480px) {
+  .waitlist-form {
+    flex-direction: row;
+  }
+
+  .submit-btn {
+    width: auto;
+    flex-shrink: 0;
+  }
 }
 
-.info span {
-  font-size: 0.875rem;
-  color: var(--text-light);
-}
 
 /* Footer */
 footer {
