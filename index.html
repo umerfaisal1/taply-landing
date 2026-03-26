@@ -2,287 +2,1445 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image" href="/logo.png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="google-site-verification" content="m_gW00MokG5oEL4_UlXMZQdemr1c_dIR685wNeNSfkA" />
-  <title>Taply - NFC Gym Check-In App | Effortless Gym Access</title>
-  <meta name="description"
-    content="Taply is the ultimate NFC gym check-in app. Issue cards instantly, manage members, track check-ins, and streamline gym access effortlessly. Join the waitlist now!" />
-  <link rel="canonical" href="https://taplyapp.netlify.app" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taply — NFC Membership Cards for Gyms</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&family=Work+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --red: #ff4044;
+      --red-light: rgba(255, 64, 68, 0.08);
+      --red-mid: rgba(255, 64, 68, 0.15);
+      --red-border: rgba(255, 64, 68, 0.2);
+      --black: #0f0f0f;
+      --dark: #1a1a1a;
+      --text: #1a1a1a;
+      --muted: #777;
+      --light-muted: #aaa;
+      --bg: #fafaf9;
+      --bg2: #f4f3f1;
+      --bg3: #eeedeb;
+      --border: #e8e7e4;
+      --white: #ffffff;
+      --shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+      --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.1);
+    }
 
-  <!-- SEO Meta Tags -->
-  <meta name="keywords"
-    content="NFC gym check-in, gym access control app, gym membership management, NFC card system for gyms, contactless gym entry, gym check-in software" />
-  <meta name="robots" content="index, follow" />
-  <meta name="author" content="Taply" />
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://taplyapp.netlify.app/" />
-  <meta property="og:title" content="Taply - NFC Gym Check-In App | Effortless Gym Access" />
-  <meta property="og:description"
-    content="Taply is the ultimate NFC gym check-in app. Issue cards instantly, manage members, track check-ins, and streamline gym access effortlessly. Join the waitlist now!" />
-  <meta property="og:image" content="https://taplyapp.netlify.app/screenshots/social-preview.png" />
+    html {
+      scroll-behavior: smooth;
+    }
 
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:url" content="https://taplyapp.netlify.app/" />
-  <meta property="twitter:title" content="Taply - NFC Gym Check-In App | Effortless Gym Access" />
-  <meta property="twitter:description"
-    content="Taply is the ultimate NFC gym check-in app. Issue cards instantly, manage members, track check-ins, and streamline gym access effortlessly. Join the waitlist now!" />
-  <meta property="twitter:image" content="https://taplyapp.netlify.app/screenshots/social-preview.png" />
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Work Sans', sans-serif;
+      overflow-x: hidden;
+    }
 
-  <!-- JSON-LD Structured Data -->
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "Taply",
-      "headline": "Gym Check-ins Made Effortless",
-      "description": "Taply is an NFC gym check-in app that allows gym owners to issue cards instantly and manage members with a simple phone tap.",
-      "applicationCategory": "BusinessApplication",
-      "operatingSystem": "Android",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD",
-        "availability": "https://schema.org/PreOrder"
-      },
-      "author": {
-        "@type": "Organization",
-        "name": "Taply"
+    .logo-font {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 0 48px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(250, 250, 249, 0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-family: 'Poppins', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--black);
+      letter-spacing: -0.5px;
+    }
+
+    .logo span {
+      color: var(--red);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-cta {
+      background: var(--red);
+      color: white !important;
+      padding: 9px 20px;
+      border-radius: 8px;
+      font-size: 14px !important;
+      font-weight: 600 !important;
+      text-decoration: none;
+      transition: all 0.2s !important;
+      box-shadow: 0 2px 12px rgba(255, 64, 68, 0.25);
+    }
+
+    .nav-cta:hover {
+      background: #e03538 !important;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(255, 64, 68, 0.35) !important;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 100px 48px 80px;
+      position: relative;
+      overflow: hidden;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero-left {
+      flex: 1;
+      max-width: 560px;
+      z-index: 2;
+    }
+
+    .hero-right {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--red-light);
+      border: 1px solid var(--red-border);
+      color: var(--red);
+      padding: 6px 14px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 28px;
+      letter-spacing: 0.3px;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--red);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.4;
       }
     }
-  </script>
+
+    .hero h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(40px, 5vw, 62px);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -2px;
+      color: var(--black);
+      margin-bottom: 20px;
+      animation: fadeUp 0.5s 0.1s ease both;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--red);
+    }
+
+    .hero p {
+      font-size: 17px;
+      color: var(--muted);
+      line-height: 1.65;
+      font-weight: 400;
+      margin-bottom: 36px;
+      max-width: 440px;
+      animation: fadeUp 0.5s 0.2s ease both;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      animation: fadeUp 0.5s 0.3s ease both;
+    }
+
+    .btn-primary {
+      background: var(--red);
+      color: white;
+      border: none;
+      padding: 13px 28px;
+      border-radius: 10px;
+      font-family: 'Work Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 20px rgba(255, 64, 68, 0.28);
+    }
+
+    .btn-primary:hover {
+      background: #e03538;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(255, 64, 68, 0.36);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--text);
+      border: 1.5px solid var(--border);
+      padding: 13px 28px;
+      border-radius: 10px;
+      font-family: 'Work Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-secondary:hover {
+      border-color: #ccc;
+      background: var(--bg2);
+    }
+
+    .hero-note {
+      margin-top: 18px;
+      font-size: 13px;
+      color: var(--light-muted);
+      animation: fadeUp 0.5s 0.4s ease both;
+    }
+
+    .hero-note strong {
+      color: var(--muted);
+    }
+
+    /* NFC CARD VISUAL */
+    .card-scene {
+      position: relative;
+      width: 420px;
+      height: 420px;
+      animation: fadeUp 0.7s 0.3s ease both;
+    }
+
+    .card-bg-circle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, rgba(255, 64, 68, 0.07) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .nfc-card {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) perspective(900px) rotateX(10deg) rotateY(-8deg);
+      width: 320px;
+      height: 198px;
+      background: linear-gradient(135deg, #ffffff 0%, #f8f8f8 100%);
+      border-radius: 16px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow:
+        0 30px 70px rgba(0, 0, 0, 0.12),
+        0 8px 20px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .nfc-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--red), #ff8080);
+    }
+
+    .card-inner {
+      padding: 22px 24px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .card-logo {
+      font-family: 'Poppins', sans-serif;
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--black);
+      letter-spacing: -0.3px;
+    }
+
+    .card-logo span {
+      color: var(--red);
+    }
+
+    .card-nfc {
+      opacity: 0.3;
+    }
+
+    .card-chip {
+      width: 38px;
+      height: 28px;
+      background: linear-gradient(135deg, #d4a843, #f0c86a, #c49830);
+      border-radius: 4px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      margin-top: 4px;
+    }
+
+    .card-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .card-label {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--light-muted);
+      margin-bottom: 3px;
+    }
+
+    .card-value {
+      font-family: 'Poppins', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--black);
+    }
+
+    /* Floating phone */
+    .phone-mock {
+      position: absolute;
+      bottom: 20px;
+      right: 10px;
+      width: 80px;
+      height: 140px;
+      background: var(--black);
+      border-radius: 14px;
+      border: 2px solid #333;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .phone-screen {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, #1a1a1a 0%, #111 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 12px 8px;
+    }
+
+    .phone-check {
+      width: 28px;
+      height: 28px;
+      background: rgba(255, 64, 68, 0.15);
+      border: 1.5px solid var(--red);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--red);
+      font-size: 13px;
+    }
+
+    .phone-text {
+      font-size: 7px;
+      color: rgba(255, 255, 255, 0.6);
+      text-align: center;
+      font-family: 'Work Sans', sans-serif;
+      line-height: 1.4;
+    }
+
+    .phone-name {
+      font-size: 8px;
+      color: white;
+      font-weight: 600;
+      font-family: 'Work Sans', sans-serif;
+    }
+
+    /* Tap rings */
+    .tap-rings {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+    }
+
+    .tap-rings span {
+      display: block;
+      border: 1.5px solid rgba(255, 64, 68, 0.3);
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: tapRing 2.5s ease-out infinite;
+    }
+
+    .tap-rings span:nth-child(1) {
+      width: 30px;
+      height: 30px;
+      animation-delay: 0s;
+    }
+
+    .tap-rings span:nth-child(2) {
+      width: 55px;
+      height: 55px;
+      animation-delay: 0.5s;
+    }
+
+    .tap-rings span:nth-child(3) {
+      width: 80px;
+      height: 80px;
+      animation-delay: 1s;
+    }
+
+    @keyframes tapRing {
+      0% {
+        opacity: 0.8;
+        transform: translate(-50%, -50%) scale(0.7);
+      }
+
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1.3);
+      }
+    }
+
+    /* Floating stat pills */
+    .stat-pill {
+      position: absolute;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 14px;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .stat-pill:nth-child(1) {
+      top: 40px;
+      left: -10px;
+      animation-delay: 0s;
+    }
+
+    .stat-pill:nth-child(2) {
+      bottom: 60px;
+      left: -20px;
+      animation-delay: 1s;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-6px);
+      }
+    }
+
+    .stat-pill-icon {
+      width: 28px;
+      height: 28px;
+      background: var(--red-light);
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+
+    .stat-pill-label {
+      font-size: 10px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .stat-pill-value {
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--black);
+      line-height: 1.2;
+    }
+
+    /* DIVIDER */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* SECTIONS */
+    .section {
+      padding: 96px 48px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      color: var(--black);
+      margin-bottom: 14px;
+    }
+
+    .section-sub {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 460px;
+      line-height: 1.65;
+      font-weight: 400;
+    }
+
+    /* STEPS */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+    }
+
+    .step {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 28px;
+      position: relative;
+      transition: all 0.25s;
+      overflow: hidden;
+    }
+
+    .step::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--red), transparent);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+
+    .step:hover {
+      border-color: var(--red-border);
+      box-shadow: 0 8px 32px rgba(255, 64, 68, 0.08);
+      transform: translateY(-3px);
+    }
+
+    .step:hover::before {
+      opacity: 1;
+    }
+
+    .step-num {
+      font-family: 'Poppins', sans-serif;
+      font-size: 56px;
+      font-weight: 900;
+      color: rgba(0, 0, 0, 0.04);
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      line-height: 1;
+    }
+
+    .step-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--red-light);
+      border: 1px solid var(--red-border);
+      border-radius: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      margin-bottom: 18px;
+    }
+
+    .step h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.3px;
+      color: var(--black);
+    }
+
+    .step p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* FEATURES */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 56px;
+      background: var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .feature {
+      background: white;
+      padding: 32px 28px;
+      transition: background 0.2s;
+    }
+
+    .feature:hover {
+      background: var(--bg2);
+    }
+
+    .feature-icon {
+      font-size: 26px;
+      margin-bottom: 14px;
+    }
+
+    .feature h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 7px;
+      letter-spacing: -0.2px;
+      color: var(--black);
+    }
+
+    .feature p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* STATS BAR */
+    .stats-bar {
+      background: var(--black);
+      padding: 56px 48px;
+    }
+
+    .stats-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .stat-item {
+      padding: 32px 40px;
+      border-right: 1px solid rgba(255, 255, 255, 0.06);
+      text-align: center;
+    }
+
+    .stat-item:last-child {
+      border-right: none;
+    }
+
+    .stat-value {
+      font-family: 'Poppins', sans-serif;
+      font-size: 44px;
+      font-weight: 800;
+      color: var(--red);
+      letter-spacing: -2px;
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.45);
+      font-weight: 400;
+    }
+
+    /* PRICING */
+    .pricing-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-top: 56px;
+    }
+
+    .pricing-card {
+      background: white;
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      padding: 48px;
+      max-width: 440px;
+      width: 100%;
+      position: relative;
+      box-shadow: var(--shadow-lg);
+      text-align: center;
+    }
+
+    .pricing-card::before {
+      content: '';
+      position: absolute;
+      top: -1.5px;
+      left: 40px;
+      right: 40px;
+      height: 3px;
+      background: var(--red);
+      border-radius: 0 0 4px 4px;
+    }
+
+    .price-tag {
+      display: inline-block;
+      background: var(--red-light);
+      border: 1px solid var(--red-border);
+      color: var(--red);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+    }
+
+    .price-amount {
+      font-family: 'Poppins', sans-serif;
+      font-size: 80px;
+      font-weight: 900;
+      letter-spacing: -5px;
+      line-height: 1;
+      color: var(--black);
+      margin-bottom: 4px;
+    }
+
+    .price-amount sup {
+      font-size: 32px;
+      letter-spacing: 0;
+      vertical-align: super;
+      color: var(--red);
+    }
+
+    .price-period {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 36px;
+      font-weight: 400;
+    }
+
+    .price-features {
+      list-style: none;
+      margin-bottom: 36px;
+      text-align: left;
+    }
+
+    .price-features li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 0;
+      font-size: 15px;
+      color: var(--text);
+      border-bottom: 1px solid var(--border);
+      font-weight: 400;
+    }
+
+    .price-features li:last-child {
+      border-bottom: none;
+    }
+
+    .check {
+      width: 20px;
+      height: 20px;
+      background: var(--red-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--red);
+      font-size: 10px;
+      font-weight: 700;
+      border: 1px solid var(--red-border);
+    }
+
+    .pricing-note {
+      font-size: 13px;
+      color: var(--light-muted);
+      margin-top: 14px;
+    }
+
+    /* FAQ */
+    .faq {
+      margin-top: 56px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .faq-item {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px 24px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .faq-item:hover {
+      border-color: var(--red-border);
+      box-shadow: 0 4px 16px rgba(255, 64, 68, 0.06);
+    }
+
+    .faq-q {
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      color: var(--black);
+    }
+
+    .faq-toggle {
+      width: 24px;
+      height: 24px;
+      background: var(--bg2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 16px;
+      color: var(--red);
+      transition: all 0.2s;
+      font-weight: 300;
+    }
+
+    .faq-item.open .faq-toggle {
+      background: var(--red-light);
+      transform: rotate(45deg);
+    }
+
+    .faq-a {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      font-weight: 400;
+    }
+
+    .faq-item.open .faq-a {
+      max-height: 200px;
+      padding-top: 14px;
+    }
+
+    /* CTA */
+    .cta-section {
+      background: var(--black);
+      padding: 96px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(ellipse 50% 70% at 50% 50%, rgba(255, 64, 68, 0.08) 0%, transparent 70%);
+    }
+
+    .cta-section h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 800;
+      letter-spacing: -2px;
+      line-height: 1.1;
+      color: white;
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .cta-section h2 em {
+      font-style: normal;
+      color: var(--red);
+    }
+
+    .cta-section p {
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.45);
+      margin-bottom: 36px;
+      position: relative;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      padding: 28px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    footer p {
+      font-size: 13px;
+      color: var(--light-muted);
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* TRUSTED BY */
+    .trusted {
+      padding: 28px 48px;
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .trusted-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .trusted-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--light-muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .trusted-items {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .trusted-item {
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--bg3);
+      letter-spacing: -0.3px;
+      opacity: 0.5;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 0 20px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        flex-direction: column;
+        padding: 90px 20px 60px;
+        gap: 48px;
+      }
+
+      .hero-right {
+        width: 100%;
+      }
+
+      .card-scene {
+        width: 320px;
+        height: 320px;
+      }
+
+      .nfc-card {
+        width: 260px;
+        height: 162px;
+      }
+
+      .section {
+        padding: 64px 20px;
+      }
+
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .stat-item {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      footer {
+        padding: 24px 20px;
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .trusted {
+        padding: 20px;
+      }
+
+      .pricing-card {
+        padding: 32px 24px;
+      }
+
+      .cta-section {
+        padding: 64px 20px;
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <header>
-    <div class="container">
-      <nav>
-        <a href="#" class="logo">
-          <!-- Simple SVG logo placeholder or text -->
-          <img class="logo-img" src="/logo.png" alt="Taply Logo">
 
+  <!-- NAV -->
+  <nav>
+    <div class="logo">Taply<span>.</span></div>
+    <div class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="#pricing" class="nav-cta">Get Started</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="badge">
+        <span class="badge-dot"></span>
+        NFC + QR · No member app required
+      </div>
+      <h1>Tap in.<br>Track everyone.<br><em>Run your gym.</em></h1>
+      <p>Give your members a physical NFC card. They tap to check in. You see active members, renewals, and expiry — all
+        from your phone.</p>
+      <div class="hero-actions">
+        <a href="#pricing" class="btn-primary">
+          Start for Free
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
         </a>
-
-        <div class="nav-links">
-
-          <span class="btn coming-soon-header">Coming Soon</span>
-        </div>
-      </nav>
+        <a href="#how" class="btn-secondary">See how it works</a>
+      </div>
+      <p class="hero-note">No hardware needed. Any NFC card works. <strong>First month free.</strong></p>
     </div>
-  </header>
 
-  <main>
-    <section id="hero" class="hero section-padding">
-      <div class="container">
-        <div class="hero-content reveal">
-          <h1>Gym Check-ins Made <span class="highlight">Effortless</span></h1>
-          <p>Issue NFC check-in cards to your members instantly. No expensive hardware, just your phone and Taply.</p>
-          <div class="waitlist-form-container">
-            <p class="waitlist-text">Join the waitlist to get early access.</p>
-            <form action="https://formspree.io/f/maqqavyk" method="POST" class="waitlist-form">
-              <input type="email" name="email" placeholder="Enter your email" required class="input-field">
-              <button type="submit" class="btn submit-btn">Join Waitlist</button>
-            </form>
+    <div class="hero-right">
+      <div class="card-scene">
+        <div class="card-bg-circle"></div>
+
+        <!-- Floating stat pills -->
+        <div class="stat-pill">
+          <div class="stat-pill-icon">📊</div>
+          <div>
+            <div class="stat-pill-label">Active Members</div>
+            <div class="stat-pill-value">142</div>
           </div>
         </div>
-        <div class="hero-image reveal">
-          <img src="/screenshots/home_screen.png" alt="Taply App Home Screen" class="app-mockup">
+        <div class="stat-pill">
+          <div class="stat-pill-icon">🔄</div>
+          <div>
+            <div class="stat-pill-label">Renewal Rate</div>
+            <div class="stat-pill-value">87%</div>
+          </div>
+        </div>
+
+        <!-- NFC Card -->
+        <div class="nfc-card">
+          <div class="card-inner">
+            <div class="card-top">
+              <div>
+                <div class="card-logo">Taply<span>.</span></div>
+                <div class="card-chip"></div>
+              </div>
+              <div class="card-nfc">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="#333">
+                  <path
+                    d="M20.55 12c0 4.74-3.84 8.59-8.57 8.59V22c5.6 0 10.14-4.56 10.14-10.14l-1.57.14zM12 3.41C7.27 3.41 3.43 7.26 3.43 12H1.86C1.86 6.4 6.42 1.86 12 1.86V3.4zm0 3.17c2.99 0 5.42 2.43 5.42 5.42h-1.57c0-2.12-1.73-3.85-3.85-3.85V6.58zm0 3.14c1.27 0 2.28 1.01 2.28 2.28h-1.57c0-.39-.32-.71-.71-.71v-1.57z" />
+                </svg>
+              </div>
+            </div>
+            <div class="card-bottom">
+              <div>
+                <div class="card-label">Member</div>
+                <div class="card-value">Alex Johnson</div>
+              </div>
+              <div style="text-align:right">
+                <div class="card-label">Expires</div>
+                <div class="card-value">12/25</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Phone mock -->
+        <div class="phone-mock">
+          <div class="phone-screen">
+            <div class="phone-check">✓</div>
+            <div class="phone-name">Alex J.</div>
+            <div class="phone-text">Checked in<br>just now</div>
+          </div>
+        </div>
+
+        <!-- Tap rings -->
+        <div class="tap-rings">
+          <span></span><span></span><span></span>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-
-    <section id="features" class="features section-padding">
-      <div class="container">
-        <div class="text-center mb-5">
-          <h2>Why Choose Taply?</h2>
-          <p class="subtitle">Everything you need to manage gym access simply.</p>
-        </div>
-
-        <div class="features-grid">
-          <div class="feature-card reveal">
-            <div class="icon-box">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5 13L9 17L19 7" stroke="white" stroke-width="2" stroke-linecap="round"
-                  stroke-linejoin="round" />
-              </svg>
-            </div>
-            <h3>Instant NFC Access</h3>
-            <p>Issue standard NFC cards to your members. They simply tap to check in. No app required for members.</p>
-          </div>
-
-          <div class="feature-card reveal">
-            <div class="icon-box">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21"
-                  stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                <path
-                  d="M9 11C11.2091 11 13 9.20914 13 7C13 4.79086 11.2091 3 9 3C6.79086 3 5 4.79086 5 7C5 9.20914 6.79086 11 9 11Z"
-                  stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                <path
-                  d="M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13"
-                  stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                <path
-                  d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0113 6.11653 19.0113 7.005C19.0113 7.89347 18.7122 8.75608 18.1676 9.45768C17.623 10.1593 16.8604 10.6597 16 10.88"
-                  stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-            </div>
-            <h3>Member Management</h3>
-            <p>Keep track of all your members in one place. Add, remove, and update profiles instantly.</p>
-          </div>
-
-          <div class="feature-card reveal">
-            <div class="icon-box">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M18 20V10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M12 20V4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M6 20V14" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-            </div>
-            <h3>Real-time Analytics</h3>
-            <p>See who is checking in and when. Get insights into your gym's peak hours.</p>
-          </div>
-        </div>
+  <!-- TRUSTED -->
+  <div class="trusted">
+    <div class="trusted-inner">
+      <div class="trusted-label">Perfect for</div>
+      <div class="trusted-items">
+        <div class="trusted-item">💪 Gyms</div>
+        <div class="trusted-item">🥋 Martial Arts</div>
+        <div class="trusted-item">🧘 Yoga Studios</div>
+        <div class="trusted-item">🏊 Swim Clubs</div>
+        <div class="trusted-item">🏋️ CrossFit Boxes</div>
+        <div class="trusted-item">💼 Coworking Spaces</div>
       </div>
-    </section>
+    </div>
+  </div>
 
-    <!-- How it Works Section -->
-    <section id="how-it-works" class="how-it-works section-padding">
-      <div class="container">
-        <div class="text-center mb-5">
-          <h2>How It Works</h2>
-          <p class="subtitle">Effortless management in two simple steps.</p>
-        </div>
+  <div class="divider"></div>
 
-        <!-- Step 1 -->
-        <div class="step-row reveal">
-          <div class="step-content">
-            <div class="step-number">01</div>
-            <h3>Issue Cards Instantly</h3>
-            <p>Forget expensive hardware. Just tap a blank NFC card to the back of your phone to assign it to a new
-              member. It takes seconds.</p>
-          </div>
-          <div class="step-media">
-            <div class="gif-wrapper">
-              <img src="/gifs/issue_card.gif" alt="Issuing a card demo" class="demo-gif">
-            </div>
-          </div>
-        </div>
+  <!-- HOW IT WORKS -->
+  <section class="section reveal" id="how">
+    <div class="section-label">How it works</div>
+    <h2 class="section-title">Up and running<br>in 3 steps</h2>
+    <p class="section-sub">If you can use Instagram, you can use Taply. No technical knowledge needed.</p>
 
-        <!-- Step 2 -->
-        <div class="step-row reverse reveal">
-          <div class="step-content">
-            <div class="step-number">02</div>
-            <h3>Seamless Check-ins</h3>
-            <p>Members simply tap their card on your device when they arrive. Validity is checked instantly, and the
-              visit is logged automatically.</p>
-          </div>
-          <div class="step-media">
-            <div class="gif-wrapper">
-              <img src="/gifs/checkin.gif" alt="Check-in demo" class="demo-gif">
-            </div>
-          </div>
-        </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-icon">📱</div>
+        <h3>Download Taply</h3>
+        <p>Install the app, sign in with Google, and set up your gym profile in under 2 minutes.</p>
       </div>
-    </section>
-
-    <section id="analytics" class="analytics section-padding">
-      <div class="container">
-        <div class="analytics-wrapper reveal">
-          <div class="analytics-content">
-            <h2>Data Driven Decisions</h2>
-            <p class="subtitle align-left">Stop guessing and start knowing. Our analytics dashboard gives you a clear
-              view of your gym's performance.</p>
-
-            <ul class="analytics-features">
-              <li>
-                <div class="icon-sm">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
-                    <polyline points="17 6 23 6 23 12"></polyline>
-                  </svg>
-                </div>
-                <div>
-                  <strong>Peak Hours Tracking</strong>
-                  <p>Identify when your gym is busiest to optimize staffing.</p>
-                </div>
-              </li>
-              <li>
-                <div class="icon-sm">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="9" cy="7" r="4"></circle>
-                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                  </svg>
-                </div>
-                <div>
-                  <strong>Member Activity</strong>
-                  <p>Track active members and retention rates instantly.</p>
-                </div>
-              </li>
-            </ul>
-          </div>
-          <div class="analytics-image">
-            <div class="image-card">
-              <img src="/screenshots/analytics_screen.png" alt="Analytics Dashboard" class="dashboard-img">
-            </div>
-          </div>
-        </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-icon">💳</div>
+        <h3>Write member cards</h3>
+        <p>Buy blank NFC cards for ~$10 on Amazon. Tap your phone on each card to program it instantly.</p>
       </div>
-    </section>
-
-    <!-- Security Section -->
-    <section class="security section-padding">
-      <div class="container">
-        <div class="security-grid reveal">
-          <div class="security-image">
-            <div class="gif-wrapper">
-              <img src="/gifs/rolling%20nonce%20animation.gif" alt="Secure Unique Tap Animation" class="demo-gif">
-            </div>
-          </div>
-          <div class="security-content">
-            <h2>Impossible to Clone</h2>
-            <p class="subtitle align-left">Rest easy knowing your gym access is secure.</p>
-            <p class="description">
-              Taply uses advanced encryption where <strong>every tap is unique</strong>.
-              Even if someone copies the card data, it won't work again.
-              Our system verifies each tap in real-time to ensure it's authentic.
-            </p>
-            <ul class="security-features">
-              <li>
-                <div class="check-circle">✓</div>
-                <span>Unique code for every single tap</span>
-              </li>
-              <li>
-                <div class="check-circle">✓</div>
-                <span>Prevents card copying and replay attacks</span>
-              </li>
-              <li>
-                <div class="check-circle">✓</div>
-                <span>Bank-grade encryption standards</span>
-              </li>
-            </ul>
-          </div>
-        </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-icon">✅</div>
+        <h3>Members tap in</h3>
+        <p>Members tap their card on your phone at the door. You see check-ins and stats in real time.</p>
       </div>
-    </section>
+    </div>
+  </section>
 
+  <div class="divider"></div>
 
-  </main>
+  <!-- FEATURES -->
+  <section class="section reveal" id="features">
+    <div class="section-label">Features</div>
+    <h2 class="section-title">Everything you need.<br>Nothing you don't.</h2>
+    <p class="section-sub">Taply replaces the spreadsheet, the WhatsApp group, and the notebook at the front desk.</p>
 
+    <div class="features-grid">
+      <div class="feature">
+        <div class="feature-icon">📡</div>
+        <h3>NFC + QR Check-in</h3>
+        <p>Members tap their physical card via NFC or scan a QR code as fallback. Works on every phone.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">📊</div>
+        <h3>Live Dashboard</h3>
+        <p>Active members, check-in history, renewal rates, and expiry alerts — all at a glance.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">⏸️</div>
+        <h3>Freeze Memberships</h3>
+        <p>Member going on holiday? Freeze with one tap. The timer pauses and resumes when you unfreeze.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">⏰</div>
+        <h3>Expiry Tracking</h3>
+        <p>Know exactly who expires this week. Never lose track of renewals or let someone slip through.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🔒</div>
+        <h3>No App for Members</h3>
+        <p>Your members get a physical card. Nothing to download, no passwords. It just works.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">📈</div>
+        <h3>Renewal Analytics</h3>
+        <p>Track which months have the highest churn so you can run promos at exactly the right time.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-bar reveal">
+    <div class="stats-inner">
+      <div class="stat-item">
+        <div class="stat-value">~$10</div>
+        <div class="stat-label">for 50 NFC cards on Amazon</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">&lt;2min</div>
+        <div class="stat-label">to set up your gym</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">$8/mo</div>
+        <div class="stat-label">less than one guest pass</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRICING -->
+  <section class="section reveal" id="pricing">
+    <div class="section-label">Pricing</div>
+    <h2 class="section-title">One price.<br>Everything included.</h2>
+    <p class="section-sub">No hidden fees. No per-member charges. No contracts.</p>
+
+    <div class="pricing-wrapper">
+      <div class="pricing-card">
+        <div class="price-tag">All Features Included</div>
+        <div class="price-amount"><sup>$</sup>8</div>
+        <div class="price-period">per month · cancel anytime</div>
+        <ul class="price-features">
+          <li><span class="check">✓</span> Unlimited members</li>
+          <li><span class="check">✓</span> NFC + QR code check-in</li>
+          <li><span class="check">✓</span> Membership freeze & expiry tracking</li>
+          <li><span class="check">✓</span> Active member analytics</li>
+          <li><span class="check">✓</span> Renewal rate dashboard</li>
+          <li><span class="check">✓</span> Works with any NFC card</li>
+        </ul>
+        <a href="#" class="btn-primary" style="width:100%; justify-content:center; font-size:16px; padding:14px;">
+          Get Started — First Month Free
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </a>
+        <p class="pricing-note">No credit card required for trial. Cancel anytime.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- FAQ -->
+  <section class="section reveal" id="faq">
+    <div class="section-label">FAQ</div>
+    <h2 class="section-title">Common questions.</h2>
+
+    <div class="faq">
+      <div class="faq-item">
+        <div class="faq-q">What NFC cards do I need to buy? <span class="faq-toggle">+</span></div>
+        <div class="faq-a">Any standard NFC card works — NTAG213, NTAG215, or NTAG216. A pack of 50 costs around $10–15
+          on Amazon. No proprietary hardware, no vendor lock-in.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Do my members need to download an app? <span class="faq-toggle">+</span></div>
+        <div class="faq-a">No. Members get a physical card — that's it. Only you as the gym owner need to install Taply.
+          Members tap or scan and walk in.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What if my phone doesn't support NFC? <span class="faq-toggle">+</span></div>
+        <div class="faq-a">There's a QR code fallback built in that works on every phone with a camera. NFC is the main
+          experience but you're never blocked without it.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I freeze a membership without deleting it? <span class="faq-toggle">+</span></div>
+        <div class="faq-a">Yes. Freeze any membership with one tap. The expiry timer pauses and resumes when you
+          unfreeze. Perfect for members who travel or take breaks.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Is there a limit on members? <span class="faq-toggle">+</span></div>
+        <div class="faq-a">No limit. $8/month covers unlimited members, unlimited check-ins, and all features regardless
+          of your gym size.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section reveal">
+    <h2>Your gym deserves better<br>than a <em>spreadsheet.</em></h2>
+    <p>Set up in under 2 minutes. First month completely free.</p>
+    <a href="#pricing" class="btn-primary" style="font-size:16px; padding:15px 36px;">
+      Get Started — $8/month
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <path d="M5 12h14M12 5l7 7-7 7" />
+      </svg>
+    </a>
+  </section>
+
+  <!-- FOOTER -->
   <footer>
-    <div class="container text-center">
-      <p>&copy; 2026 Taply. All rights reserved.</p>
-    </div>
+    <div class="logo">Taply<span style="color:var(--red)">.</span></div>
+    <p>NFC membership cards for gyms, studios & clubs.</p>
+    <p>© 2026 Taply. All rights reserved.</p>
   </footer>
 
-  <script type="module" src="/src/main.js"></script>
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    reveals.forEach(r => observer.observe(r));
+
+    // FAQ
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+
+    // Card tilt on mouse move
+    const card = document.querySelector('.nfc-card');
+    if (card) {
+      document.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const dx = (e.clientX - cx) / window.innerWidth * 12;
+        const dy = (e.clientY - cy) / window.innerHeight * 12;
+        card.style.transform = `translate(-50%, -50%) perspective(900px) rotateX(${10 - dy}deg) rotateY(${-8 + dx}deg)`;
+      });
+    }
+  </script>
 </body>
 
 </html>
