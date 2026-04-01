@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Deletion Instructions — Taply</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&family=Work+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --red: #ff4044;
+            --black: #0f0f0f;
+            --text: #1a1a1a;
+            --muted: #777;
+            --bg: #fafaf9;
+            --border: #e8e7e4;
+            --light-muted: #aaa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Work Sans', sans-serif;
+            line-height: 1.6;
+        }
+
+        nav {
+            padding: 0 48px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            background: rgba(250, 250, 249, 0.92);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--black);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--red);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            min-height: calc(100vh - 200px);
+        }
+
+        .page-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+
+        .content-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+        }
+
+        .instructions {
+            font-size: 16px;
+            color: var(--text);
+            margin-bottom: 32px;
+            line-height: 1.8;
+        }
+
+        .instructions strong {
+            color: var(--black);
+        }
+
+        .email-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            background: var(--red);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            border-radius: 10px;
+            transition: all 0.2s;
+        }
+
+        .email-link:hover {
+            background: #e03538;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(255, 64, 68, 0.25);
+        }
+
+        footer {
+            background: #f4f3f1;
+            border-top: 1px solid var(--border);
+            padding: 28px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 60px;
+        }
+
+        footer p {
+            font-size: 13px;
+            color: var(--light-muted);
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="/index.html" class="logo">Taply<span>.</span></a>
+    </nav>
+
+    <div class="container">
+        <h1 class="page-title">Account & Data Deletion</h1>
+
+        <div class="content-card">
+            <p class="instructions">
+                We respect your privacy. If you would like to request the complete deletion of your Taply account and
+                all associated data, you can do so by sending a direct email to our support team.
+                <br><br>
+                Please email <strong>umerfaisal1@icloud.com</strong> from the email address associated with your taply
+                account. Our team will process your request and permanently remove your information from our servers.
+            </p>
+
+            <a href="mailto:umerfaisal1@icloud.com?subject=Account Deletion Request" class="email-link">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                Send Deletion Request
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="logo">Taply<span style="color:var(--red)">.</span></div>
+        <p>NFC membership cards for gyms, studios & clubs.</p>
+        <div style="display:flex; gap:16px; align-items:center;">
+            <a href="/privacy.html" style="font-size:13px; color:var(--light-muted); text-decoration:none;">Privacy
+                Policy</a>
+            <p style="margin:0;">© 2026 Taply. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
