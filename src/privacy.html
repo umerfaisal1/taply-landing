@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy — Taply</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&family=Work+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --red: #ff4044;
+            --black: #0f0f0f;
+            --text: #1a1a1a;
+            --muted: #777;
+            --bg: #fafaf9;
+            --border: #e8e7e4;
+            --light-muted: #aaa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Work Sans', sans-serif;
+            line-height: 1.6;
+        }
+
+        nav {
+            padding: 0 48px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            background: rgba(250, 250, 249, 0.92);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--black);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--red);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            min-height: calc(100vh - 200px);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 100px 0;
+            font-size: 16px;
+            color: var(--muted);
+        }
+
+        .error {
+            text-align: center;
+            padding: 100px 0;
+            color: var(--red);
+        }
+
+        .policy-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .last-updated {
+            font-size: 13px;
+            color: var(--text);
+            margin-bottom: 40px;
+        }
+
+        .section {
+            margin-bottom: 32px;
+        }
+
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .section-note {
+            font-size: 13px;
+            font-style: italic;
+            color: var(--text);
+            margin-top: 12px;
+        }
+
+        .section-contact {
+            font-size: 14px;
+            color: var(--text);
+            margin-top: 12px;
+        }
+
+        .subsection {
+            margin-top: 16px;
+        }
+
+        .subsection-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .content-text {
+            font-size: 15px;
+            color: var(--text);
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        .content-list {
+            list-style-type: none;
+            margin-bottom: 12px;
+        }
+
+        .content-list li {
+            font-size: 15px;
+            color: var(--text);
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 16px;
+            line-height: 1.6;
+        }
+
+        .content-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--text);
+        }
+
+        .content-map {
+            margin-bottom: 12px;
+        }
+
+        .content-map div {
+            font-size: 15px;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        footer {
+            background: #f4f3f1;
+            border-top: 1px solid var(--border);
+            padding: 28px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 60px;
+        }
+
+        footer p {
+            font-size: 13px;
+            color: var(--light-muted);
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="/" class="logo">Taply<span>.</span></a>
+    </nav>
+
+    <div class="container" id="policy-container">
+        <div class="loading">Loading Privacy Policy...</div>
+    </div>
+
+    <footer>
+        <div class="logo">Taply<span style="color:var(--red)">.</span></div>
+        <p>NFC membership cards for gyms, studios & clubs.</p>
+        <div style="display:flex; gap:16px; align-items:center;">
+            <a href="/privacy" style="font-size:13px; color:var(--light-muted); text-decoration:none;">Privacy
+                Policy</a>
+            <p style="margin:0;">© 2026 Taply. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        async function loadPrivacyPolicy() {
+            const container = document.getElementById('policy-container');
+            try {
+                const response = await fetch('https://fvyjzhuuccbriiidezpm.supabase.co/functions/v1/privacy-policy');
+                console.log(response);
+                if (!response.ok) throw new Error('Failed to load');
+                const policy = await response.json();
+
+                container.innerHTML = '';
+
+                // Title
+                const title = document.createElement('h1');
+                title.className = 'policy-title';
+                title.textContent = policy.title;
+                container.appendChild(title);
+
+                // Last updated
+                const lastUpdated = document.createElement('div');
+                lastUpdated.className = 'last-updated';
+                lastUpdated.textContent = 'Last updated: ' + policy.last_updated;
+                container.appendChild(lastUpdated);
+
+                // Sections
+                if (policy.sections && Array.isArray(policy.sections)) {
+                    policy.sections.forEach(sec => {
+                        const sectionDiv = document.createElement('div');
+                        sectionDiv.className = 'section';
+
+                        // Section title
+                        if (sec.title) {
+                            const secTitle = document.createElement('h2');
+                            secTitle.className = 'section-title';
+                            secTitle.textContent = sec.title;
+                            sectionDiv.appendChild(secTitle);
+                        }
+
+                        // Section content
+                        if (sec.content) {
+                            sectionDiv.appendChild(renderContent(sec.content));
+                        }
+
+                        // Subsections
+                        if (sec.subsections && Array.isArray(sec.subsections)) {
+                            sec.subsections.forEach(sub => {
+                                const subDiv = document.createElement('div');
+                                subDiv.className = 'subsection';
+
+                                if (sub.title) {
+                                    const subTitle = document.createElement('h3');
+                                    subTitle.className = 'subsection-title';
+                                    subTitle.textContent = sub.title;
+                                    subDiv.appendChild(subTitle);
+                                }
+
+                                if (sub.content) {
+                                    const subContent = document.createElement('div');
+                                    subContent.className = 'content-text';
+                                    subContent.textContent = sub.content; // Content handles its own string/list parsing
+                                    subDiv.appendChild(subContent);
+                                }
+                                sectionDiv.appendChild(subDiv);
+                            });
+                        }
+
+                        // Note
+                        if (sec.note) {
+                            const noteDiv = document.createElement('div');
+                            noteDiv.className = 'section-note';
+                            noteDiv.textContent = sec.note;
+                            sectionDiv.appendChild(noteDiv);
+                        }
+
+                        // Contact
+                        if (sec.contact) {
+                            const contactDiv = document.createElement('div');
+                            contactDiv.className = 'section-contact';
+                            contactDiv.textContent = 'Contact: ' + sec.contact;
+                            sectionDiv.appendChild(contactDiv);
+                        }
+
+                        container.appendChild(sectionDiv);
+                    });
+                }
+            } catch (e) {
+                container.innerHTML = '<div class="error">Failed to load privacy policy. Please try again later.</div>';
+            }
+        }
+
+        function renderContent(content) {
+            const wrapper = document.createElement('div');
+
+            if (typeof content === 'string') {
+                const p = document.createElement('div');
+                p.className = 'content-text';
+                p.textContent = content;
+                wrapper.appendChild(p);
+            } else if (Array.isArray(content)) {
+                if (content.length === 0) return wrapper;
+
+                const ul = document.createElement('ul');
+                ul.className = 'content-list';
+
+                if (typeof content[0] === 'object' && content[0] !== null) {
+                    content.forEach(item => {
+                        const li = document.createElement('li');
+                        if (item.service) {
+                            li.textContent = `${item.service} — ${item.purpose || ''}`;
+                        } else {
+                            li.textContent = Object.values(item).join(' ');
+                        }
+                        ul.appendChild(li);
+                    });
+                } else {
+                    content.forEach(item => {
+                        const li = document.createElement('li');
+                        li.textContent = item;
+                        ul.appendChild(li);
+                    });
+                }
+                wrapper.appendChild(ul);
+            } else if (typeof content === 'object' && content !== null) {
+                const mapDiv = document.createElement('div');
+                mapDiv.className = 'content-map';
+                for (const [key, value] of Object.entries(content)) {
+                    const entryDiv = document.createElement('div');
+                    const capKey = key.charAt(0).toUpperCase() + key.slice(1);
+                    entryDiv.textContent = `${capKey}: ${value}`;
+                    mapDiv.appendChild(entryDiv);
+                }
+                wrapper.appendChild(mapDiv);
+            }
+
+            return wrapper;
+        }
+
+        loadPrivacyPolicy();
+    </script>
+</body>
+
+</html>
