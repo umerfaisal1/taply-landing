@@ -962,37 +962,116 @@
       position: relative;
     }
 
-    /* EARLY ACCESS FORM */
-    .early-access-form {
+    /* BETA TESTING STEPS */
+    .testing-steps {
       display: flex;
-      justify-content: center;
-      gap: 12px;
-      max-width: 500px;
+      flex-direction: column;
+      gap: 16px;
+      max-width: 600px;
       margin: 0 auto;
-      flex-wrap: wrap;
-      position: relative;
+      text-align: left;
     }
 
-    .early-access-input {
-      flex: 1 1 240px;
-      padding: 15px 20px;
-      font-size: 16px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 10px;
-      font-family: 'Work Sans', sans-serif;
-      outline: none;
+    .testing-step {
+      display: flex;
+      align-items: center;
       background: rgba(255, 255, 255, 0.05);
-      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 20px;
+      gap: 20px;
       transition: all 0.2s;
+      position: relative;
+      z-index: 2;
     }
 
-    .early-access-input::placeholder {
-      color: rgba(255, 255, 255, 0.45);
+    .testing-step:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.2);
     }
 
-    .early-access-input:focus {
-      border-color: var(--red);
+    .testing-step-num {
+      width: 40px;
+      height: 40px;
+      background: var(--red);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .testing-step-content {
+      flex: 1;
+    }
+
+    .testing-step-content h3 {
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      font-size: 18px;
+      margin-bottom: 4px;
+      font-weight: 600;
+      margin-top: 0;
+    }
+
+    .testing-step-content p {
+      margin: 0;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.6);
+      line-height: 1.4;
+    }
+
+    .testing-btn {
+      white-space: nowrap;
+      padding: 12px 24px;
+      font-size: 14px;
+      text-decoration: none;
+      font-weight: 600;
+      font-family: 'Work Sans', sans-serif;
+      border-radius: 8px;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .testing-btn.primary {
+      background: var(--red);
+      color: white;
+      border: none;
+    }
+
+    .testing-btn.primary:hover {
+      background: #e03538;
+      transform: translateY(-2px);
+    }
+
+    .testing-btn.secondary {
       background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .testing-btn.secondary:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    @media (max-width: 600px) {
+      .testing-step {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+        gap: 12px;
+      }
+      .testing-btn {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+        display: flex;
+        box-sizing: border-box;
+      }
     }
 
     /* FOOTER */
@@ -1425,17 +1504,37 @@
 
   <!-- CTA -->
   <section class="cta-section reveal" id="early-access">
-    <h2>Your gym deserves better<br>than a <em>spreadsheet.</em></h2>
-    <p>Set up in under 2 minutes. First 10 members completely free.</p>
-    <form action="https://formspree.io/f/maqqavyk" method="POST" class="early-access-form">
-      <input type="email" name="email" placeholder="Enter your email address" required class="early-access-input">
-      <button type="submit" class="btn-primary" style="font-size:16px; padding:15px 36px; cursor:pointer;">
-        Get Early Access
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-          <path d="M5 12h14M12 5l7 7-7 7" />
-        </svg>
-      </button>
-    </form>
+    <h2>Join the <em>Beta Testing</em></h2>
+    <p>Follow these 3 simple steps to get early access to Taply.</p>
+    
+    <div class="testing-steps">
+      <div class="testing-step">
+        <div class="testing-step-num">1</div>
+        <div class="testing-step-content">
+          <h3>Join Google Group</h3>
+          <p>Join our required tester group to get allowlisted.</p>
+        </div>
+        <a href="https://groups.google.com/g/taply-testers" target="_blank" class="testing-btn secondary">Join Group</a>
+      </div>
+      
+      <div class="testing-step">
+        <div class="testing-step-num">2</div>
+        <div class="testing-step-content">
+          <h3>Opt In</h3>
+          <p>Opt in to become a tester on the Play Store.</p>
+        </div>
+        <a href="https://play.google.com/apps/testing/com.taply.app" target="_blank" class="testing-btn secondary">Opt In</a>
+      </div>
+      
+      <div class="testing-step">
+        <div class="testing-step-num">3</div>
+        <div class="testing-step-content">
+          <h3>Download App</h3>
+          <p>Download Taply to your Android device.</p>
+        </div>
+        <a href="https://play.google.com/store/apps/details?id=com.taply.app" target="_blank" class="testing-btn primary">Download</a>
+      </div>
+    </div>
   </section>
 
   <!-- FOOTER -->
